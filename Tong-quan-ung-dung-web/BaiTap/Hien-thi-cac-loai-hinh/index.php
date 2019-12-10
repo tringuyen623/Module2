@@ -11,7 +11,7 @@
 <body>
     <form method="post">
         <select name="menu">
-            <option value="choose">Choose the picture</option>
+            <option value="choose">Choose the shape</option>
             <option value="rec">The rectangle</option>
             <option value="sqrtri">The square triangle</option>
             <option value="isostri">The isosceles triangle</option>
@@ -23,7 +23,7 @@
             $pic = $_POST['menu'];
             switch ($pic) {
                 case "choose":
-                    echo "Please choose a option!";
+                    echo "Please choose a shape!";
                     break;
                 case "rec":
                     for ($i = 0; $i < 5; $i++) {
