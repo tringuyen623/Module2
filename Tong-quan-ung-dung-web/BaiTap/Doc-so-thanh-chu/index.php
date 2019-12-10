@@ -10,12 +10,12 @@
 
 <body>
     <form method="post">
-        <input type="text" name="search">
+        <input type="text" name="number">
         <input type="submit">
     </form>
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $num = $_POST['search'];
+        $num = $_POST['number'];
         $num = (int) $num;
         $onetonine = array(
             "0" => "zero",
