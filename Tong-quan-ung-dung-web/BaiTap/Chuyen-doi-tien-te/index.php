@@ -19,7 +19,7 @@
                         <label>Enter amount of money: </label>
                     </td>
                     <td>
-                        <input type="number" name="amount" min="0" pattern="/^[0-9]$/">
+                        <input type="number" name="amount" min="0" pattern="/[0-9]/">
                     </td>
                 </tr>
 

@@ -12,19 +12,19 @@
 <body>
     <?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $investment = $_POST['investment'] ?? 0;
-                    $rates = $_POST['rate'] ?? 0;
-                    $years = $_POST['years'] ?? 0;
-                    $result = $investment;
-                    $futurevalue;
-                    for($i = 1; $i <= $years; $i++) {
-                        $result = $result + $result * ($rates / 100);
-                    }
-                    if ( empty($_POST['investment']) || empty($_POST['rate']) || empty($_POST['years'])) {
-                        $futurevalue = "Error : Investment, rate, years require";
-                    } else {
-                        $futurevalue = $result;
-                    }   
+        $investment = $_POST['investment'];
+        $rates = $_POST['rate'];
+        $years = $_POST['years'];
+        $result = $investment;
+        $futurevalue;
+        for ($i = 1; $i <= $years; $i++) {
+            $result = $result + $result * ($rates / 100);
+        }
+        if (empty($_POST['investment']) || empty($_POST['rate']) || empty($_POST['years'])) {
+            $futurevalue = "Error : Investment, rate, years required";
+        } else {
+            $futurevalue = $result;
+        }
     }
     ?>
     <div id="content">
