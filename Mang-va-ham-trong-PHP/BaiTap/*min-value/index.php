@@ -4,7 +4,6 @@
 </form>
 
 <form method="post">
-
     <?php
     $len = $_GET['len'];
     $arr = array();
@@ -22,9 +21,12 @@
         echo  '<input type="text"' . 'name="' . "array$i" . '" placeholder="enter the value of array"><br>';
         $a = ($_POST["array$i"]);
         $a = test_input($a);
-        $arr[$i] = explode(",", trim($a));
+        $arr[$i] = trim(explode(",", $a));
     }
     echo '<input type="submit"><br>';
+    
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
 
         $min = $arr[0][0];
         foreach ($arr as $key => $value) {
@@ -34,7 +36,8 @@
                 }
             }
         }
-   
-    echo "The minimum value in this array is: $min";
+
+        echo "The minimum value in this array is: $min";
+    }
     ?>
 </form>

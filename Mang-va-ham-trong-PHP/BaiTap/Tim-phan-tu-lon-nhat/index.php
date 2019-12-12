@@ -22,10 +22,11 @@
         echo  '<input type="text"' . 'name="' . "array$i" . '" placeholder="enter the value of array"><br>';
         $a = ($_POST["array$i"]);
         $a = test_input($a);
-        $arr[$i] = explode(",", trim($a));
+        $arr[$i] = trim(explode(",", $a));
     }
     echo '<input type="submit"><br>';
 
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $max = $arr[0][0];
         foreach ($arr as $key => $value) {
             foreach ($arr[$key] as $key1 => $num) {
@@ -36,5 +37,6 @@
         }
    
     echo "The maximum value in this array is: $max";
+    }
     ?>
 </form>
