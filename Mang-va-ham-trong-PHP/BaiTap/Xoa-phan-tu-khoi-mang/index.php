@@ -22,20 +22,23 @@ function test_input($data)
 }
 $arr = explode(",", trim($arr));
 $delvalue = trim($delvalue);
-$result;
 $index;
+$len = count($arr);
 if (test_input($delvalue) === false) {
     echo "wrong input";
 } else {
-    for ($i = 0; $i < count($arr); $i++) {
-        if ($arr[$i] == $delvalue) {
+    for ($i = 0; $i < $len; $i++) {
+        $arr[$i] = (int)($arr[$i]);
+        $delvalue = (int)($delvalue);
+        if ($arr[$i] === $delvalue) {
             $index = $i;
         }
     }
     for ($i = $index; $i < count($arr); $i++) {
         $arr[$i] = $arr[$i + 1];
     }
+    $arr[$len-1] = 0;
 }
-print_r($arr);
+var_dump($arr);
 }
 ?>

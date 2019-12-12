@@ -11,7 +11,6 @@
 
     function test_input($data)
     {
-
         if (preg_match("/^[0-9 ,]*$/", $data)) {
             return $data;
         } else {
