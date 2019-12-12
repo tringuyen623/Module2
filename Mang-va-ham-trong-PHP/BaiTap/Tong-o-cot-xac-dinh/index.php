@@ -15,13 +15,14 @@
         function test_input($data)
         {
             if (preg_match("/^[0-9]*$/", $data)) {
+                $data = (int) $data;
                 return $data;
             } else {
                 return false;
             }
         }
 
-        if (!test_input($len)) {
+        if (!test_input($len) || test_input($column) > test_input($len)) {
             echo "wrong input";
         } else {
             for ($i = 0; $i < $len; $i++) {
@@ -32,14 +33,15 @@
                 }
                 echo "</tr>";
             }
-        }
+
 
             for ($j = 0; $j <= $len; $j++) {
                 $sum += $arr[$j][$column];
             }
-            
-        var_dump($arr);
-        echo "Sum number of column of array is: $sum";
+
+            var_dump($arr);
+            echo "Sum number of column of array is: $sum";
+        }
     }
     ?>
 </table>
