@@ -1,0 +1,8 @@
+.error {
+  color: red;
+}
+.display {
+    text-align: center;
+    border-collapse: collapse;
+    width: 35%;
+}
