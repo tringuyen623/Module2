@@ -8,15 +8,7 @@ function findMin($arr){
             $index = $i;
         }
     }
-//     foreach ($arr as $key => $num){
-//         if ($num < $min){
-//             $min = $num;
-//             $index = $key;
-//         }
-//     }
-//    return $index;
 }
 
 $intArr = array (10, 3, 5, 7, 9 , 20, 1, 23, 32);
 echo findMin($intArr);
-?>

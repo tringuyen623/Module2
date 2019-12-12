@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    if (test_input($index) === false) {
+    if (!test_input($index)) {
         echo "wrong input";
     } else {
         for ($i = 0; $i < 100; $i++) {

@@ -3,7 +3,7 @@
     <input type="submit" value="Make an array">
 
 </form>
-
+<table border="1">
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -20,13 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 
-    if (test_input($len) === false) {
+    if (!test_input($len)) {
         echo "wrong input";
     } else {
         for ($i = 0; $i < $len; $i++) {
+            echo "<tr>";
             for ($j = 0; $j < $len; $j++) {
                 $arr[$i][$j] = rand(1, 100);
+                echo "<td>" . $arr[$i][$j]. "</td>";
             }
+            echo "</tr>";
         }
     }
 
@@ -37,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         }
     }
-    var_dump($arr);
     echo "Sum of backslash of array is: $sum";
 }
 ?>
+</table>

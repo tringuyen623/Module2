@@ -17,10 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             return false;
         }
     }
-    $input_string = test_input($_POST['string'])??0;
-    $character = test_input($_POST['char'])??0;
+    $input_string = $_POST['string'];
+    $character = $_POST['char'];
     $count = 0;
-    if ((test_input($input_string) === false && $input_string !=0) || test_input($character) === false) {
+    if (!test_input($input_string) || !test_input($character)) {
         echo "wrong input";
     } else {
         $input_string = trim($input_string);
