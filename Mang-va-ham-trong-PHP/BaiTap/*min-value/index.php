@@ -21,7 +21,7 @@
         echo  '<input type="text"' . 'name="' . "array$i" . '" placeholder="enter the value of array"><br>';
         $a = ($_POST["array$i"]);
         $a = test_input($a);
-        $arr[$i] = trim(explode(",", $a));
+        $arr[$i] = explode(",", trim($a));
     }
     echo '<input type="submit"><br>';
     
