@@ -19,6 +19,7 @@
 
         function test_input($data)
         {
+            $data = strtolower($data);
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
@@ -29,7 +30,7 @@
         $email = test_input($_POST['email']);
         $phone = test_input($_POST['phone']);
         $message = '';
-        $nameError = empty($name) ? "Name is required" : (!preg_match("/^[a-zA-Z ]*$/", $name) ? "Only letters and white space allowed" : "");
+        $nameError = empty($name) ? "Name is required" : (!preg_match("/^[a-zA-Z]*$/", $name) ? "Only letters allowed" : "");
         $emailError = empty($email) ? "Email is required" : (!filter_var($email, FILTER_VALIDATE_EMAIL) ? "Invalid email format" : "");
         $phoneError = empty($phone) ? "Phone is required" : (!preg_match("/^[0-9 ]{10,10}$/", $phone) ? "Only ten numbers" : "");
 
