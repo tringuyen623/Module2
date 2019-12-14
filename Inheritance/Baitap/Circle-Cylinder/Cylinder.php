@@ -5,7 +5,7 @@ include_once "Circle.php";
 class Cylinder extends Circle {
     private $height;
 
-    public function __construct($_height, $_radius, $_color)
+    public function __construct($_radius, $_color, $_height)
     {
         Circle::__construct($_radius, $_color);
         $this->height = $_height;
@@ -24,7 +24,7 @@ class Cylinder extends Circle {
     public function __toString()
     {
         $rs = parent::__toString();
-        return "My height is: $this->height $rs";
+        return "$rs My height is: $this->height";
     }
 
 }
