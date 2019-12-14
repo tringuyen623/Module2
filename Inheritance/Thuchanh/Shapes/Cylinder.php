@@ -20,6 +20,5 @@ class Cylinder extends Circle {
     {
         return parent::calculatePerimeter() * $this->height;
     }
-    }
 }
 ?>
