@@ -1,6 +1,6 @@
 <?php
-include_once "classSquare.php";
-include_once "classCylinder.php";
+include_once "Square.php";
+include_once "Cylinder.php";
 
 
 $square = new Square("Square", 5, 5);
