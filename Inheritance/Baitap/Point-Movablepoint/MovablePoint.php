@@ -4,8 +4,7 @@ class MovablePoint extends Point {
     private $xSpeed;
     private $ySpeed;
 
-    public function __construct(float $_x, float $_y, float $_xSpeed, float $_ySpeed)
-    {
+    public function __construct(float $_x,float $_y,float $_xSpeed, float $_ySpeed){
         parent::__construct($_x, $_y);
         $this->xSpeed = $_xSpeed;
         $this->ySpeed = $_ySpeed;
@@ -44,11 +43,11 @@ class MovablePoint extends Point {
     }
 
     public function move(){
-    //    $x = parent::getX();
-    //    $y = parent::getY(); 
-    //    $x += $this->xSpeed;
-    //    $y += $this->ySpeed;
-    //    return ;;
+       $x = parent::getX();
+       $y = parent::getY(); 
+       $x += $this->xSpeed;
+       $y += $this->ySpeed;
+       return parent::setXY($x,$y);
     }
 }
 ?>
