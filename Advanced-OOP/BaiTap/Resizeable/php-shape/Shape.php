@@ -6,7 +6,7 @@
  * Time: 17:14
  */
 
- include_once "Resizeable.php";
+include_once(dirname(__FILE__). "/../php-shape/IntefaceClass/IColorable.php");
 class Shape 
 {
     public $name;
