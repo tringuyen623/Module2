@@ -1,6 +1,6 @@
 <?php
 include "Circle.php";
-include "Comparable.php";
+include "IComparable.php";
 
 class ComparableCircle extends Circle implements Comparabel {
     public function __construct($name, $radius)
