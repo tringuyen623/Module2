@@ -7,6 +7,8 @@ class MylinkedList {
     private $numNode;
 
     public function __construct(){
+        $this->head = null; 
+        $this->tail = null;
         $this->numNode = 0;
     }
 
@@ -18,6 +20,12 @@ class MylinkedList {
         $link = new Node($element);
         $link->next = $this->head;
         $this->head = $link;
+
+        if($this->tail === null){
+            $this->tail = $link;
+        }
+
+        $this->numNode++;
     }
 
     public function addLast($element){
@@ -28,8 +36,5 @@ class MylinkedList {
 
     }
 
-    public function size() {
-        return count($this->)
-    }
 }
 ?>>
