@@ -5,6 +5,7 @@ class Home extends Controller
 
     public function __construct()
     { 
+        //init model here
     }
 
     public function index()

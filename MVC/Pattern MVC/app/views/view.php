@@ -1,7 +1,7 @@
 <?php 
-require '../views/inc/header.php';
+require '../app/views/inc/header.php';
 
-echo $data['title'];
+echo ($data['title']);
 
-require '../views/inc/header.php';
+require '../app/views/inc/footer.php';
 ?>
