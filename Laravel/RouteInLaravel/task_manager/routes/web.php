@@ -11,27 +11,5 @@
 |
 */
 
-Route::prefix('customer')->group(function () {
-    Route::get('index', 'CustomersController@index');
-
-    Route::get('create', 'CustomersController@create');
-
-    Route::post('store', 'CustomersController@store');
-
-    Route::get('{id}/show', function(){
-
-    });
-
-    Route::get('{id}/edit', function(){
-
-    });
-
-    Route::patch('{id}/update', function(){
-
-    });
-
-    Route::delete('{id}', function(){
-
-    });
-
-});
+Route::get('customer/search', 'CustomersController@search')->name('customer.search');
+Route::resource('customer', 'CustomersController');
