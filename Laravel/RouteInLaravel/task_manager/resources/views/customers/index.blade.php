@@ -1,5 +1,10 @@
 @extends('layouts.master')
 @section('content')
+@if(session()->has('message'))
+<div class="alert alert-success" style="width:fit-content">
+    {{ session()->get('message') }}
+</div>
+@endif
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="float-left">
@@ -41,7 +46,7 @@
                 <a href="{{route('customer.show', $customer->id)}}" class="btn btn-info" role="button">Detail</a>
                 <a href="{{route('customer.edit', $customer->id)}}" class="btn btn-warning" role="button">Edit</a>
                 <a role="button">
-                    <form style="display:inline" action="{{route('customer.destroy', $customer->id)}}" method="POST">
+                    <form style="display:inline" onclick="return confirm('Are you sure?')" action="{{route('customer.destroy', $customer->id)}}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" type="submit">Delete</button>

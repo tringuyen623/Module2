@@ -41,8 +41,12 @@ class CustomersController extends Controller
         $phone = trim($request->phone);
         $email = trim($request->email);
 
-        DB::table('customers')->insert(['name' => $name, 'phone' => $phone, 'email' => $email]);
-        return redirect()->route('customer.index');
+        $result = DB::table('customers')->insert(['name' => $name, 'phone' => $phone, 'email' => $email]);
+        if($result){
+            $message = 'Customer Added';
+        }
+
+        return redirect()->route('customer.index')->with('message', $message);
     }
 
     public function search(Request $request)
@@ -92,8 +96,14 @@ class CustomersController extends Controller
         $phone = trim($request->phone);
         $email = trim($request->email);
 
-        DB::table('customers')->where('id', $id)->update(['name' => $name, 'phone' => $phone, 'email' => $email]);
-        return redirect()->route('customer.index');
+        $result = DB::table('customers')->where('id', $id)->update(['name' => $name, 'phone' => $phone, 'email' => $email]);
+        if($result){
+            $message = "Customer Updated";
+        }else {
+            $message = null;
+        }
+
+        return redirect()->route('customer.index')->with('message', $message);
     }
 
     /**
@@ -104,8 +114,11 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('customers')->where('id', $id)->delete();
+        $result = DB::table('customers')->where('id', $id)->delete();
+        if($result){
+            $message = 'Customer Removed';
+        }
 
-        return redirect()->route('customer.index');
+        return redirect()->route('customer.index')->with('message', $message);
     }
 }
