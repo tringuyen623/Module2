@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('customer/search', 'CustomersController@search')->name('customer.search');
-Route::resource('customer', 'CustomersController');
+Route::get('/', function () {
+    return view('welcome');
+});
