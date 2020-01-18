@@ -8,8 +8,8 @@
         <h3 class="float-left"><strong>Add new customer</strong></h3>
     </div>
     <div class="col-12 mt-3">
-    <form method="POST" action="{{ route('customers.store')}}">
-        @csrf
+        <form method="POST" action="{{ route('customers.store')}}">
+            @csrf
             <div class="form-group">
                 <label for="inputEmail1">Họ và tên</label>
                 <input type="text" name="name" class="form-control" id="inputName" placeholder="Nhập Họ và tên">
@@ -22,7 +22,17 @@
                 <label for="inputEmail1">Email address</label>
                 <input type="email" name="email" class="form-control" id="inputEmail1" placeholder="Nhập email">
             </div>
-            
+            <div class="form-group">
+                <label for="cities">Thành phố</label>
+                <div class="control">
+                    <select name="city_id" id="">
+                        @foreach ($cities as $city)
+                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Tạo mới</button>
             <a href="{{ route('customers.index') }}" role="button" class="btn btn-secondary">Hũy</a>
         </form>

@@ -41,7 +41,19 @@
 
             </div>
 
-            
+            <div class="form-group">
+                <label for="cities">Thành phố</label>
+                <div class="control">
+                    <select name="city_id" id="">
+                        @foreach ($cities as $city)
+                        <option @if ($customer->id === $city->id) {{"selected"}}
+                            @endif
+                            value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Chỉnh sửa</button>
 
             <a href="{{ route('customers.index') }}" role="button" class="btn btn-secondary">Hũy</a>

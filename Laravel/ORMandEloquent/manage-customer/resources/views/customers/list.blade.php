@@ -15,6 +15,7 @@
                 <th scope="col">Họ và tên</th>
                 <th scope="col">Số điện thoại</th>
                 <th scope="col">Email</th>
+                <th scope="col">City</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ $customer->name }}</td>
                 <td>{{ $customer->phone }}</td>
                 <td>{{ $customer->email }}</td>
+                <td>{{ $customer->city->name }}</td>
                 <td>
                 <a href="{{ route('customers.show', $customer->id) }}" role="button" class="btn btn-info">Detail</a>
                     <a href="{{ route('customers.edit', $customer->id) }}" role="button" class="btn btn-warning">Edit</a>

@@ -34,21 +34,9 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $task = new Task();
-        $task->title = request('title');
-        $task->content = request('content');
-        $task->due_date = request('duedate');
-        $file = request('image');
-        if ($request->hasFile('image') && $file->isValid()) {
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs('public/images', $fileName);
-            $task->img = $fileName;
-        }
-
-        $task->save();
-
+        dd(Task::create($this->validateTask()));
         return redirect()->route('tasks.index');
     }
 
@@ -58,10 +46,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
-        $task = Task::findOrFail($id);
-
         return view('tasks.show', compact('task'));
     }
 
@@ -71,10 +57,8 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        $task = Task::findOrFail($id);
-
         return view('tasks.edit', compact('task'));
     }
 
@@ -85,20 +69,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Task $task)
     {
-        $task = Task::findOrFail($id);
-        $task->title = request('title');
-        $task->content = request('content');
-        $task->due_date = request('duedate');
-        $file = request('image');
-        if ($request->hasFile('image') && $file->isValid()) {
-            $fileName = $file->getClientOriginalName();
-            $file->storeAs('public/images', $fileName);
-            $task->img = $fileName;
-        }
-
-        $task->save();
+        $task->update($this->validateTask());
 
         return redirect()->route('tasks.index');
     }
@@ -109,10 +82,19 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        Task::destroy($id);
+        Task::destroy($task->id);
 
         return redirect()->route('tasks.index');
+    }
+
+    public function validateTask(){
+        return request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+            // 'due_date' => 'nullable|date|date_format:"Y-m-d\TH:i"',
+            // 'img' => 'required'
+        ]);
     }
 }

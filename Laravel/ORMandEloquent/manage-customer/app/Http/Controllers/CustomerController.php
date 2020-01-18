@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
 use App\Customer;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,8 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
+
+        // return $customers->city->name;
         return view('customers.list', compact('customers'));
     }
 
@@ -25,7 +28,9 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customers.create');
+        return view('customers.create', [
+            'cities' => City::all()
+        ]);
     }
 
     /**
@@ -34,23 +39,11 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $validation = $request->validate([
-            'name' => 'required',
-            'phone' => 'required|min:10|max:10',
-            'email' => 'required|email'
-        ]);
+        $customer = Customer::create($this->validateCustomer());
 
-        if ($validation) {
-            $customer = new Customer();
-            $customer->name = request('name');
-            $customer->phone = request('phone');
-            $customer->email = request('email');
-            $customer->save();
-
-            return redirect()->route('customers.index');
-        }
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -59,10 +52,8 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-
         return view('customers.show', compact('customer'));
     }
 
@@ -72,10 +63,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Customer $customer)
     {
-        $customer = Customer::find($id);
-        return view('customers.edit', compact('customer'));
+        return view('customers.edit', ['customer' => $customer, 'cities' => City::all()]);
     }
 
     /**
@@ -85,13 +75,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Customer $customer)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->name = request('name');
-        $customer->phone = request('phone');
-        $customer->email = request('email');
-        $customer->save();
+        $customer->update($this->validateCustomer());
 
         return redirect()->route('customers.index');
     }
@@ -102,9 +88,9 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Customer $customer)
     {
-        Customer::destroy($id);
+        Customer::destroy($customer->id);
         return redirect()->route('customers.index');
     }
 
@@ -114,5 +100,15 @@ class CustomerController extends Controller
         $customers = Customer::where('name', 'like', '%' . $key . '%')->get();
 
         return view('customers.show_search', compact('customers'));
+    }
+
+    public function validateCustomer()
+    {
+        return request()->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'city_id' => 'required'
+        ]);
     }
 }

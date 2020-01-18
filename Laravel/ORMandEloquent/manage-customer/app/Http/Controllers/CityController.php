@@ -18,31 +18,30 @@ class CityController extends Controller
     }
 
     public function store(){
-        $city = new City();
-        $city->name = request('name');
-
-        $city->save();
+        City::create($this->validateCity());
 
         return redirect()->route('cities.index');
     }
 
-    public function edit($id){
-        $city = City::findOrFail($id);
-
+    public function edit(City $city){
         return view('cities.edit', compact('city'));
     }
 
-    public function update($id){
-        $city = City::findOrFail($id);
-        $city->name = request('name');
-        $city->save();
+    public function update(City $city){
+        $city->update($this->validateCity());
 
         return redirect()->route('cities.index');
     }
 
-    public function destroy($id){
-        City::destroy($id);
+    public function destroy(City $city){
+        City::destroy($city->id);
 
         return redirect()->route('cities.index');
+    }
+
+    public function validateCity(){
+        return request()->validate([
+            'name' => 'required'
+        ]);
     }
 }

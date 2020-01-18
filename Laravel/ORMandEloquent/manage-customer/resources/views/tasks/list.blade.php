@@ -22,7 +22,7 @@
 
             </tr>
         </thead>
-        <tbody class="text-center">
+        <tbody class="">
             @foreach ($tasks as $key=>$task)
 
             <tr>

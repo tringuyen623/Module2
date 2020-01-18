@@ -37,7 +37,7 @@
 
                 <label>Due Date</label>
 
-                <input type="date" name="duedate" class="form-control" id="inputDueDate">
+                <input type="date" name="duedate" class="form-control" id="inputDueDate" value="{{ $task->created_at }}">
 
             </div>
 
@@ -45,7 +45,7 @@
 
                 <label>Image</label>
 
-                <input type="file" name="image" class="form-control" id="inputImage">
+            <input type="file" name="image" class="form-control" id="inputImage" value="{{ $task->img }}">
 
             </div>
 
