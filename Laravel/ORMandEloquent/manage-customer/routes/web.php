@@ -21,3 +21,5 @@ Route::get('customers/search', 'CustomerController@search')->name('customers.sea
 Route::resource('customers', 'CustomerController');
 
 Route::resource('tasks', 'TaskController');
+
+Route::resource('cities', 'CityController');
